@@ -1,0 +1,35 @@
+{
+  "name": "@davrodpin/denoro",
+  "version": "1.0.0",
+  "description": "Deno KV CLI Explorer Tool",
+  "exports": {
+    ".": "./src/app.ts"
+  },
+  "tasks": {
+    "run": "deno run --unstable-kv --allow-all src/app.ts",
+    "build:dev": "dirty=$(test -n \"$(git status --porcelain)\" && echo '+dirty' || echo '') && version=$(git rev-parse --short HEAD)$dirty && bash tools/build.sh --version=\"$version\"",
+    "docs:preview": "deno run --allow-net --allow-read --watch https://deno.land/std@0.177.0/http/file_server.ts docs"
+  },
+  "imports": {
+    "cliffy/": "https://deno.land/x/cliffy@v0.25.7/",
+    "std/": "https://deno.land/std@0.208.0/"
+  },
+  "compilerOptions": {
+    "strict": true
+  },
+  "unstable": ["kv"],
+  "lint": {
+    "include": ["src/"],
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "useTabs": false,
+    "indentWidth": 2,
+    "semiColons": true,
+    "singleQuote": true,
+    "proseWrap": "preserve",
+    "include": ["src/"]
+    }
+}
